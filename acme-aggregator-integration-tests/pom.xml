@@ -25,7 +25,12 @@
             <version>${acme.content.model.def.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.acme</groupId>
+            <artifactId>acme-rest-api</artifactId>
+            <version>${acme.rest.api.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

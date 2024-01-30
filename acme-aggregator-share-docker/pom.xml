@@ -18,16 +18,9 @@
     <dependencies>
         <dependency>
             <groupId>org.acme</groupId>
-            <artifactId>acme-content-model-def</artifactId>
-            <version>${acme.content.model.def.version}</version>
+            <artifactId>acme-share-ui</artifactId>
+            <version>${acme.share.ui.version}</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>org.acme</groupId>
-            <artifactId>acme-aggregator-share</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        -->
     </dependencies>
 
     <build>
