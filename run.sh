@@ -3,9 +3,9 @@
 export COMPOSE_FILE_PATH="${PWD}/target/classes/docker/docker-compose.yml"
 
 if [ -z "${M2_HOME}" ]; then
-  export MVN_EXEC="mvn"
+  export MVN_EXEC="mvn -DaggregatorProjectActivation"
 else
-  export MVN_EXEC="${M2_HOME}/bin/mvn"
+  export MVN_EXEC="${M2_HOME}/bin/mvn -DaggregatorProjectActivation"
 fi
 
 start() {
@@ -42,13 +42,13 @@ build() {
 build_share() {
     docker-compose -f "$COMPOSE_FILE_PATH" kill acme-aggregator-share
     yes | docker-compose -f "$COMPOSE_FILE_PATH" rm -f acme-aggregator-share
-    $MVN_EXEC clean package -pl acme-aggregator-share,acme-aggregator-share-docker
+    $MVN_EXEC clean package -pl acme-aggregator-share-docker
 }
 
 build_acs() {
     docker-compose -f "$COMPOSE_FILE_PATH" kill acme-aggregator-acs
     yes | docker-compose -f "$COMPOSE_FILE_PATH" rm -f acme-aggregator-acs
-    $MVN_EXEC clean package -pl acme-aggregator-integration-tests,acme-aggregator-platform,acme-aggregator-platform-docker
+    $MVN_EXEC clean package -pl acme-aggregator-integration-tests,acme-aggregator-platform-docker
 }
 
 tail() {
@@ -60,11 +60,11 @@ tail_all() {
 }
 
 prepare_test() {
-    $MVN_EXEC verify -DskipTests=true -pl acme-aggregator-platform,acme-aggregator-integration-tests,acme-aggregator-platform-docker
+    $MVN_EXEC verify -DskipTests=true -pl acme-aggregator-integration-tests,acme-aggregator-platform-docker
 }
 
 test() {
-    $MVN_EXEC verify -pl acme-aggregator-platform,acme-aggregator-integration-tests
+    $MVN_EXEC verify -pl acme-aggregator-integration-tests
 }
 
 case "$1" in

@@ -16,6 +16,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.acme</groupId>
+            <artifactId>acme-content-model-def</artifactId>
+            <version>${acme.content.model.def.version}</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.acme</groupId>

@@ -3,11 +3,11 @@
 SET COMPOSE_FILE_PATH=%CD%\target\classes\docker\docker-compose.yml
 
 IF [%M2_HOME%]==[] (
-    SET MVN_EXEC=mvn
+    SET MVN_EXEC=mvn -DaggregatorProjectActivation
 )
 
 IF NOT [%M2_HOME%]==[] (
-    SET MVN_EXEC=%M2_HOME%\bin\mvn
+    SET MVN_EXEC=%M2_HOME%\bin\mvn -DaggregatorProjectActivation
 )
 
 IF [%1]==[] (
@@ -101,12 +101,12 @@ EXIT /B 0
 :build_share
     docker-compose -f "%COMPOSE_FILE_PATH%" kill acme-aggregator-share
     docker-compose -f "%COMPOSE_FILE_PATH%" rm -f acme-aggregator-share
-	call %MVN_EXEC% clean package -pl acme-aggregator-share,acme-aggregator-share-docker
+	call %MVN_EXEC% clean package -pl acme-aggregator-share-docker
 EXIT /B 0
 :build_acs
     docker-compose -f "%COMPOSE_FILE_PATH%" kill acme-aggregator-acs
     docker-compose -f "%COMPOSE_FILE_PATH%" rm -f acme-aggregator-acs
-	call %MVN_EXEC% clean package -pl acme-aggregator-integration-tests,acme-aggregator-platform,acme-aggregator-platform-docker
+	call %MVN_EXEC% clean package -pl acme-aggregator-integration-tests,acme-aggregator-platform-docker
 EXIT /B 0
 :tail
     docker-compose -f "%COMPOSE_FILE_PATH%" logs -f
@@ -115,10 +115,10 @@ EXIT /B 0
     docker-compose -f "%COMPOSE_FILE_PATH%" logs --tail="all"
 EXIT /B 0
 :prepare-test
-    call %MVN_EXEC% verify -DskipTests=true -pl acme-aggregator-platform,acme-aggregator-integration-tests,acme-aggregator-platform-docker
+    call %MVN_EXEC% verify -DskipTests=true -pl acme-aggregator-integration-tests,acme-aggregator-platform-docker
 EXIT /B 0
 :test
-    call %MVN_EXEC% verify -pl acme-aggregator-platform,acme-aggregator-integration-tests
+    call %MVN_EXEC% verify -pl acme-aggregator-integration-tests
 EXIT /B 0
 :purge
     docker volume rm -f acme-aggregator-acs-volume

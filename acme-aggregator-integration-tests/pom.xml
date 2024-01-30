@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.acme</groupId>
             <artifactId>acme-content-model-def</artifactId>
-            <version>1.0</version>
+            <version>${acme.content.model.def.version}</version>
             <scope>test</scope>
         </dependency>
 
