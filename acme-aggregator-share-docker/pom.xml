@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.acme</groupId>
         <artifactId>acme-aggregator</artifactId>
-        <version>1.3-SNAPSHOT</version>
+        <version>1.3</version>
     </parent>
 
     <properties>
