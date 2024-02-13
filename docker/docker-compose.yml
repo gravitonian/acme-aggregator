@@ -1,10 +1,11 @@
 version: '3.4'
 services:
   acme-aggregator-share:
-    image: alfresco-share-acme-aggregator:development
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../acme-aggregator-share-docker/target
+    #image: alfresco-share-acme-aggregator:development
+    image: acme-aggregator-share-docker:latest
+    #build:
+      #dockerfile: ./Dockerfile
+      #context: ../../../acme-aggregator-share-docker/target
     environment:
       CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
       REPO_HOST: acme-aggregator-acs
@@ -13,10 +14,11 @@ services:
       - "${share.port}:8080"
       - "${share.debug.port}:8888"
   acme-aggregator-acs:
-    image: alfresco-content-services-acme-aggregator:development
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../acme-aggregator-platform-docker/target
+    #image: alfresco-content-services-acme-aggregator:development
+    image: acme-aggregator-platform-docker:latest
+      #build:
+    #  dockerfile: ./Dockerfile
+    #  context: ../../../acme-aggregator-platform-docker/target
     environment:
       JAVA_TOOL_OPTIONS: "${keystore.settings}"
       JAVA_OPTS: "

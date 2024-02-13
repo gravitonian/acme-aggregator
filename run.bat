@@ -74,7 +74,11 @@ IF %1==test (
     CALL :test
     GOTO END
 )
-echo "Usage: %0 {build_start|start|stop|purge|tail|reload_share|reload_acs|build_test|test}"
+IF %1==build_docker_images (
+    CALL :build
+    GOTO END
+)
+echo "Usage: %0 {build_start|start|stop|purge|tail|reload_share|reload_acs|build_test|test|build_docker_images}"
 :END
 EXIT /B %ERRORLEVEL%
 

@@ -49,6 +49,17 @@
 
     <build>
         <plugins>
+            <!-- Build Docker Image -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Clean the ${project.basedir}/docker-image-build directory that is outside target -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -68,7 +79,7 @@
                     <!-- Collect extensions (JARs or AMPs) declared in this module do be deployed to docker -->
                     <execution>
                         <id>collect-extensions</id>
-                        <phase>package</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>

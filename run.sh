@@ -117,6 +117,9 @@ case "$1" in
   test)
     test
     ;;
+  build_docker_images)
+    build
+    ;;
   *)
-    echo "Usage: $0 {build_start|build_start_it_supported|start|stop|purge|tail|reload_share|reload_acs|build_test|test}"
+    echo "Usage: $0 {build_start|build_start_it_supported|start|stop|purge|tail|reload_share|reload_acs|build_test|test|build_docker_images}"
 esac
