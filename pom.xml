@@ -49,6 +49,11 @@
       <id>local-nexus</id>
       <url>http://localhost:8081/repository/maven-releases/</url>
     </repository>
+    <!-- Repository to be used when building from inside a docker container - localhost will not work then -->
+    <repository>
+      <id>local-nexus-from-container</id>
+      <url>http://host.docker.internal:8081/repository/maven-releases/</url>
+    </repository>
   </repositories>
 
   <modules>
